@@ -1,5 +1,5 @@
 :root {
-  --font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-family: "Space Grotesk", "Segoe UI", sans-serif;
   --radius-xl: 28px;
   --radius-lg: 20px;
   --radius-md: 16px;
@@ -9,7 +9,7 @@
   --focus-ring-offset: 0 0 0 5px rgba(78, 133, 255, 0.55);
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --page-bg: #0b1020;
   --surface: rgba(14, 20, 39, 0.86);
   --surface-strong: rgba(17, 24, 46, 0.96);
@@ -26,10 +26,14 @@
   --ambient-a: rgba(78, 133, 255, 0.22);
   --ambient-b: rgba(30, 214, 164, 0.18);
   --backdrop: rgba(4, 8, 18, 0.76);
-  --modal-bg: linear-gradient(180deg, rgba(20, 27, 50, 0.98), rgba(12, 18, 34, 0.98));
+  --modal-bg: linear-gradient(
+    180deg,
+    rgba(20, 27, 50, 0.98),
+    rgba(12, 18, 34, 0.98)
+  );
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   --page-bg: #f5f7fa;
   --surface: #ffffff;
   --surface-strong: rgba(255, 255, 255, 0.92);
@@ -46,7 +50,11 @@
   --ambient-a: rgba(78, 133, 255, 0.08);
   --ambient-b: rgba(30, 214, 164, 0.06);
   --backdrop: rgba(255, 255, 255, 0.8);
-  --modal-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 255, 0.98));
+  --modal-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(248, 250, 255, 0.98)
+  );
 }
 
 * {
@@ -135,7 +143,9 @@ html {
   font-family: var(--font-family);
   background: var(--page-bg);
   /* Smooth theme transition */
-  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
 }
 
 body {
@@ -145,10 +155,11 @@ body {
   color: var(--text);
   overflow-x: hidden;
   /* Ensure all components transition smoothly */
-  transition: background-color var(--transition-speed) ease, 
-              color var(--transition-speed) ease,
-              border-color var(--transition-speed) ease,
-              box-shadow var(--transition-speed) ease;
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
 }
 
 button,
@@ -545,14 +556,12 @@ code,
 .stat-card.emphasis,
 .vault-balance-card {
   background:
-    linear-gradient(160deg, var(--ambient-a), transparent),
-    var(--surface-soft);
+    linear-gradient(160deg, var(--ambient-a), transparent), var(--surface-soft);
 }
 
 .vault-balance-card.secondary {
   background:
-    linear-gradient(160deg, var(--ambient-b), transparent),
-    var(--surface-soft);
+    linear-gradient(160deg, var(--ambient-b), transparent), var(--surface-soft);
 }
 
 .placeholder-card,
@@ -581,8 +590,11 @@ code,
   margin: 0 auto 16px;
   border-radius: 999px;
   border: 1px solid rgba(255, 125, 141, 0.35);
-  background:
-    radial-gradient(circle at top, rgba(255, 125, 141, 0.28), rgba(255, 125, 141, 0.08));
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 125, 141, 0.28),
+    rgba(255, 125, 141, 0.08)
+  );
   display: grid;
   place-items: center;
   box-shadow: 0 14px 34px rgba(255, 125, 141, 0.2);
@@ -1517,8 +1529,13 @@ code,
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .api-key-section h2 {
@@ -1549,7 +1566,7 @@ code,
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--text);
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.875rem;
 }
 
@@ -1597,7 +1614,7 @@ code,
 }
 
 .params-textarea {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.875rem;
   resize: vertical;
 }
@@ -1766,7 +1783,7 @@ code,
 }
 
 .endpoint-cell {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.875rem;
 }
 
@@ -1854,7 +1871,7 @@ code,
   background: var(--page-bg);
   margin: 0;
   overflow-x: auto;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.875rem;
   line-height: 1.4;
 }
@@ -1965,40 +1982,40 @@ code,
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .api-header-actions {
     align-items: flex-start;
     width: 100%;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
-  
+
   .table-header,
   .table-row {
     grid-template-columns: 1fr;
     gap: 8px;
   }
-  
+
   .table-header span,
   .table-row span {
     padding: 4px 0;
   }
-  
+
   .table-header span::before,
   .table-row span::before {
     content: attr(data-label);
     font-weight: 500;
     margin-right: 8px;
   }
-  
+
   .section-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .history-actions {
     width: 100%;
     justify-content: flex-start;
@@ -2150,44 +2167,44 @@ code,
   .api-usage-page {
     gap: 16px;
   }
-  
+
   .api-header {
     padding: 16px;
   }
-  
+
   .api-header-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .api-logo {
     width: 48px;
     height: 48px;
   }
-  
+
   .api-header h1 {
     font-size: 1.4rem;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .key-actions {
     flex-direction: column;
   }
-  
+
   .language-tabs {
     flex-wrap: wrap;
   }
-  
+
   .code-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .code-header button {
     width: 100%;
   }
@@ -2218,8 +2235,8 @@ code,
   .input-shell {
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      'input unit'
-      'input max';
+      "input unit"
+      "input max";
     row-gap: 8px;
   }
 
@@ -2339,11 +2356,11 @@ code,
   border: 1px solid transparent;
   cursor: pointer;
   font-weight: 700;
-  transition: 
+  transition:
     transform 180ms ease,
     background 180ms ease,
     border-color 180ms ease,
-    opacity 180ms ease;;
+    opacity 180ms ease;
 }
 
 .lp-btn:hover,
@@ -2484,7 +2501,7 @@ code,
   border-radius: 4px;
 }
 
-[data-theme='light'] .skeleton {
+[data-theme="light"] .skeleton {
   background: linear-gradient(
     90deg,
     rgba(0, 0, 0, 0.04) 25%,
@@ -2492,4 +2509,41 @@ code,
     rgba(0, 0, 0, 0.04) 75%
   );
   background-size: 200% 100%;
+}
+
+/* ─── Tab Content Fade-In Animation ────────────────────────────────────────
+   Fade in tab content when switching between tabs for a smooth transition.
+   ─────────────────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── Reduced Motion Support ───────────────────────────────────────────────
+   WCAG 2.1 AA 2.3.3: Animation from Interactions
+   Respects user's prefers-reduced-motion preference by disabling/minimizing
+   transforms and animations for motion-sensitive users. Preserves visual
+   affordances (borders, shadows, color changes) to maintain interactivity cues.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations globally */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* ApiCard hover state: remove transform, keep shadow and border changes */
+  .api-marketplace-card {
+    transform: none !important;
+  }
+
+  /* Disable transform on hover while keeping other affordances */
+  .api-marketplace-card:hover {
+    transform: none !important;
+  }
 }
