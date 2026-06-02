@@ -142,10 +142,6 @@ body,
 html {
   font-family: var(--font-family);
   background: var(--page-bg);
-  /* Smooth theme transition */
-  transition:
-    background-color var(--transition-speed) ease,
-    color var(--transition-speed) ease;
 }
 
 body {
@@ -154,12 +150,20 @@ body {
   background: var(--page-bg);
   color: var(--text);
   overflow-x: hidden;
-  /* Ensure all components transition smoothly */
-  transition:
-    background-color var(--transition-speed) ease,
-    color var(--transition-speed) ease,
-    border-color var(--transition-speed) ease,
-    box-shadow var(--transition-speed) ease;
+}
+
+/* Smooth theme transition - only for users who prefer motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  }
+
+  body {
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+  }
 }
 
 button,
