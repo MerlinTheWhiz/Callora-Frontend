@@ -4,6 +4,7 @@ import { ThemeToggle } from './ThemeToggle';
 import ApiUsage from './ApiUsage';
 import ServerError from './components/ServerError';
 import NotFound from './components/NotFound';
+import Dashboard from './components/Dashboard';
 
 type DepositStage = 'input' | 'approving' | 'pending' | 'confirmed' | 'failed';
 type DemoOutcome = 'confirmed' | 'failed';

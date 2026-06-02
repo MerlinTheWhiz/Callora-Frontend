@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import EmptyState from '../components/EmptyState';
+import EmptyState from './components/EmptyState';
 import Skeleton from './components/Skeleton';
 
 
@@ -147,11 +147,11 @@ export default function ApiUsage() {
   const [apiResponse, setApiResponse] = useState<any>(null);
   const [responseTime, setResponseTime] = useState<number | null>(null);
   const [callCost, setCallCost] = useState<number | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'success' | 'error'>('all');
   const [callHistory, setCallHistory] = useState<CallRecord[]>(MOCK_CALL_HISTORY);
   const filteredCallHistory = statusFilter === 'all' ? callHistory : callHistory.filter(call => call.status === statusFilter);
   const [selectedLanguage, setSelectedLanguage] = useState<'javascript' | 'python' | 'curl'>('javascript');
   const [expandedCall, setExpandedCall] = useState<string | null>(null);
-  const [statusFilter, setStatusFilter] = useState<'all' | 'success' | 'error'>('all');
   
   const [usageStats, setUsageStats] = useState<UsageStats>({
     callsToday: 47,
