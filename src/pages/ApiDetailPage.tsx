@@ -143,7 +143,7 @@ print(data)`;
                   W
                 </div>
                 <div className="api-detail-title">
-                  <h2>{api.name}</h2>
+                  <h1>{api.name}</h1>
                   <div className="api-detail-meta">
                     <a href={api.provider?.url}>{api.provider?.name}</a> ·{" "}
                     <strong style={{ color: "var(--accent-strong)" }}>
@@ -208,13 +208,13 @@ print(data)`;
                 {tab === "overview" && (
                   <section>
                     <div className="preview-card" style={{ padding: 24, marginBottom: 32 }}>
-                       <h3 style={{ marginTop: 0 }}>About this API</h3>
+                       <h2 style={{ marginTop: 0 }}>About this API</h2>
                        <p style={{ lineHeight: 1.6, fontSize: 16, color: "var(--text-secondary)" }}>{api.description}</p>
                     </div>
 
                     <div className="api-detail-two-column">
                       <div>
-                        <h3>Key Features</h3>
+                        <h2>Key Features</h2>
                         <ul style={{ paddingLeft: 20, lineHeight: 2 }}>
                           {(api.features || []).map((f) => (
                             <li key={f} style={{ color: "var(--text-secondary)" }}>{f}</li>
@@ -222,7 +222,7 @@ print(data)`;
                         </ul>
                       </div>
                       <div>
-                        <h3>Primary Use Cases</h3>
+                        <h2>Primary Use Cases</h2>
                         <ul style={{ paddingLeft: 20, lineHeight: 2 }}>
                           {(api.useCases || []).map((u) => (
                             <li key={u} style={{ color: "var(--text-secondary)" }}>{u}</li>
@@ -231,7 +231,7 @@ print(data)`;
                       </div>
                     </div>
 
-                    <h3 style={{ marginTop: 40 }}>Performance Metrics</h3>
+                    <h2 style={{ marginTop: 40 }}>Performance Metrics</h2>
                     <div className="api-detail-metrics">
                       <div className="stat-card" style={{ padding: 20, background: "var(--bg-subtle)", borderRadius: 12 }}>
                         <div style={{ fontSize: 12, color: "var(--muted)", textTransform: "uppercase" }}>Total Requests</div>
@@ -253,7 +253,7 @@ print(data)`;
                 {tab === "documentation" && (
                   <section>
                     <div className="endpoint-section-header">
-                      <h3>Available Endpoints</h3>
+                      <h2>Available Endpoints</h2>
                       <span style={{ fontSize: 13, color: "var(--muted)" }}>Base URL: <code>{baseUrl}</code></span>
                     </div>
                     
@@ -276,7 +276,7 @@ print(data)`;
                           </div>
                           
                           <div style={{ padding: 24 }}>
-                            <h4 style={{ margin: "0 0 12px 0", fontSize: 14 }}>Request Parameters</h4>
+                            <h3 style={{ margin: "0 0 12px 0", fontSize: 14 }}>Request Parameters</h3>
                             <div className="endpoint-table-wrap">
                               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                                 <thead>
@@ -300,7 +300,7 @@ print(data)`;
                               </table>
                             </div>
 
-                            <h4 style={{ margin: "24px 0 12px 0", fontSize: 14 }}>Implementation</h4>
+                            <h3 style={{ margin: "24px 0 12px 0", fontSize: 14 }}>Implementation</h3>
                             <CodeExample snippets={allSnippets} defaultLanguage="bash" />
                           </div>
                         </div>
@@ -312,7 +312,7 @@ print(data)`;
                 {/* PRICING TAB */}
                 {tab === "pricing" && (
                   <section>
-                    <h3>Pricing Plans</h3>
+                    <h2>Pricing Plans</h2>
                     <div className="api-detail-pricing-grid">
                       <div className="preview-card" style={{ padding: 24, border: "2px solid var(--accent)" }}>
                         <div style={{ color: "var(--accent)", fontWeight: 700, fontSize: 12, textTransform: "uppercase" }}>Standard</div>
@@ -338,7 +338,7 @@ print(data)`;
                     </div>
 
                     <div className="preview-card" style={{ padding: 32 }}>
-                      <h4 style={{ marginTop: 0 }}>Cost Calculator</h4>
+                      <h3 style={{ marginTop: 0 }}>Cost Calculator</h3>
                       <p style={{ color: "var(--muted)" }}>Estimate your monthly billing based on projected request volume.</p>
                       
                       <div style={{ marginTop: 32 }}>
@@ -374,7 +374,7 @@ print(data)`;
                 {/* EXAMPLES TAB */}
                 {tab === "examples" && (
                   <section>
-                    <h3>Integration Gallery</h3>
+                    <h2>Integration Gallery</h2>
                     <p style={{ color: "var(--muted)", marginBottom: 24 }}>Explore these Boilerplate examples to get integrated in minutes.</p>
                     
                     <div className="preview-card" style={{ padding: 24, marginBottom: 24 }}>
@@ -382,12 +382,12 @@ print(data)`;
                         <span style={{ padding: "4px 12px", background: "#e0f2fe", color: "#0369a1", borderRadius: 4, fontSize: 12, fontWeight: 600 }}>React / Next.js</span>
                         <span style={{ padding: "4px 12px", background: "#fef3c7", color: "#92400e", borderRadius: 4, fontSize: 12, fontWeight: 600 }}>Server-side</span>
                       </div>
-                      <h4>Fetching data in a Next.js Page</h4>
+                      <h3>Fetching data in a Next.js Page</h3>
                       <CodeExample snippets={allSnippets} defaultLanguage="javascript" />
                     </div>
 
                     <div className="preview-card" style={{ padding: 24 }}>
-                      <h4>Python Data Analysis Workflow</h4>
+                      <h3>Python Data Analysis Workflow</h3>
                       <CodeExample snippets={allSnippets} defaultLanguage="python" />
                     </div>
                   </section>
@@ -397,13 +397,13 @@ print(data)`;
                 {tab === "reviews" && (
                   <section>
                     <div className="api-detail-reviews-header">
-                      <h3>Developer Feedback</h3>
+                      <h2>Developer Feedback</h2>
                       <button className="secondary-button">Write a Review</button>
                     </div>
                     
                     <div className="preview-card" style={{ padding: 40, textAlign: "center", borderStyle: "dashed" }}>
                        <div style={{ fontSize: 40, marginBottom: 16 }}>💬</div>
-                       <h4>No public reviews yet</h4>
+                       <h3>No public reviews yet</h3>
                        <p style={{ color: "var(--muted)", maxWidth: 400, margin: "0 auto" }}>
                          Be the first to share your experience with this API. 
                          Your feedback helps other developers make better choices.
@@ -418,7 +418,7 @@ print(data)`;
             <aside className="api-detail-sidebar">
               <div className="api-detail-sidebar-inner">
                 <div className="stat-card" style={{ padding: 24, marginBottom: 20 }}>
-                  <h4 style={{ marginTop: 0 }}>API Health</h4>
+                  <h3 style={{ marginTop: 0 }}>API Health</h3>
                   <div style={{ display: "grid", gap: 16, marginTop: 20 }}>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                       <span style={{ fontSize: 14, color: "var(--muted)" }}>Status</span>
@@ -436,7 +436,7 @@ print(data)`;
                 </div>
 
                 <div className="preview-card" style={{ padding: 24, marginBottom: 20 }}>
-                  <h4 style={{ marginTop: 0 }}>SDKs & Tools</h4>
+                  <h3 style={{ marginTop: 0 }}>SDKs & Tools</h3>
                   <div style={{ display: "grid", gap: 10, marginTop: 16 }}>
                     <button className="ghost-button" style={{ justifyContent: "flex-start", width: "100%", fontSize: 13 }}>📦 Node.js SDK</button>
                     <button className="ghost-button" style={{ justifyContent: "flex-start", width: "100%", fontSize: 13 }}>📦 Python Wrapper</button>
@@ -450,7 +450,7 @@ print(data)`;
                   borderRadius: 16,
                   border: "1px solid rgba(78, 133, 255, 0.2)"
                 }}>
-                  <h4 style={{ marginTop: 0, color: "var(--accent-strong)" }}>Support</h4>
+                  <h3 style={{ marginTop: 0, color: "var(--accent-strong)" }}>Support</h3>
                   <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.5 }}>
                     Need help with integration? Access our developer discord or email the provider directly.
                   </p>
