@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import EmptyState from '../components/EmptyState';
 
 type ApiEndpoint = {
   id: string;
@@ -145,8 +146,10 @@ export default function ApiUsage() {
   const [responseTime, setResponseTime] = useState<number | null>(null);
   const [callCost, setCallCost] = useState<number | null>(null);
   const [callHistory, setCallHistory] = useState<CallRecord[]>(MOCK_CALL_HISTORY);
+  const filteredCallHistory = statusFilter === 'all' ? callHistory : callHistory.filter(call => call.status === statusFilter);
   const [selectedLanguage, setSelectedLanguage] = useState<'javascript' | 'python' | 'curl'>('javascript');
   const [expandedCall, setExpandedCall] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'success' | 'error'>('all');
   
   const [usageStats, setUsageStats] = useState<UsageStats>({
     callsToday: 47,
@@ -446,11 +449,16 @@ export default function ApiUsage() {
         <div className="section-header">
           <h2>Call History</h2>
           <div className="history-actions">
-            <select className="filter-select">
-              <option>All Status</option>
-              <option>Success</option>
-              <option>Error</option>
-            </select>
+            <select
+                className="filter-select"
+                aria-label="Call status filter"
+                value={statusFilter}
+                onChange={e => setStatusFilter(e.target.value as 'all' | 'success' | 'error')}
+              >
+                <option value="all">All Status</option>
+                <option value="success">Success</option>
+                <option value="error">Error</option>
+              </select>
             <button className="secondary-button" onClick={() => handleExportHistory('csv')}>
               Export CSV
             </button>
@@ -470,38 +478,42 @@ export default function ApiUsage() {
             <span>Actions</span>
           </div>
           
-          {callHistory.map(call => (
-            <div key={call.id} className="table-row">
-              <span>{formatTimestamp(call.timestamp)}</span>
-              <span className="endpoint-cell">{call.endpoint}</span>
-              <span className={`status-cell ${call.status}`}>
-                {call.status === 'success' ? '✓' : '✗'} {call.status}
-              </span>
-              <span>{formatTime(call.responseTime)}</span>
-              <span>{formatUsdc(call.cost)} USDC</span>
-              <span>
-                <button
-                  className="ghost-button"
-                  onClick={() => setExpandedCall(expandedCall === call.id ? null : call.id)}
-                >
-                  {expandedCall === call.id ? 'Hide' : 'View'}
-                </button>
-              </span>
-              
-              {expandedCall === call.id && (
-                <div className="expanded-details">
-                  <div className="detail-section">
-                    <h3>Request</h3>
-                    <pre>{JSON.stringify(call.request || {}, null, 2)}</pre>
+        {filteredCallHistory.length === 0 ? (
+                <EmptyState message="No call records match the selected filter." />
+              ) : (
+                filteredCallHistory.map(call => (
+                  <div key={call.id} className="table-row">
+                    <span>{formatTimestamp(call.timestamp)}</span>
+                    <span className="endpoint-cell">{call.endpoint}</span>
+                    <span className={`status-cell ${call.status}`}>
+                      {call.status === 'success' ? '✓' : '✗'} {call.status}
+                    </span>
+                    <span>{formatTime(call.responseTime)}</span>
+                    <span>{formatUsdc(call.cost)} USDC</span>
+                    <span>
+                      <button
+                        className="ghost-button"
+                        onClick={() => setExpandedCall(expandedCall === call.id ? null : call.id)}
+                      >
+                        {expandedCall === call.id ? 'Hide' : 'View'}
+                      </button>
+                    </span>
+
+                    {expandedCall === call.id && (
+                      <div className="expanded-details">
+                        <div className="detail-section">
+                          <h4>Request</h4>
+                          <pre>{JSON.stringify(call.request || {}, null, 2)}</pre>
+                        </div>
+                        <div className="detail-section">
+                          <h4>Response</h4>
+                          <pre>{JSON.stringify(call.response || {}, null, 2)}</pre>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="detail-section">
-                    <h3>Response</h3>
-                                         <pre>{JSON.stringify(call.response || {}, null, 2)}</pre>
-                  </div>
-                </div>
+                ))
               )}
-            </div>
-          ))}
         </div>
       </div>
 
