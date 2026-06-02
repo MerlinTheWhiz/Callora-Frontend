@@ -420,7 +420,7 @@ export default function ApiUsage() {
         </div>
         
         <div className="mini-chart">
-          <h4>Calls Over Time</h4>
+          <h3>Calls Over Time</h3>
           <div className="chart-placeholder">
             {/* Simple bar chart visualization */}
             <div className="chart-bars">
@@ -491,12 +491,12 @@ export default function ApiUsage() {
               {expandedCall === call.id && (
                 <div className="expanded-details">
                   <div className="detail-section">
-                    <h4>Request</h4>
+                    <h3>Request</h3>
                     <pre>{JSON.stringify(call.request || {}, null, 2)}</pre>
                   </div>
                   <div className="detail-section">
-                    <h4>Response</h4>
-                    <pre>{JSON.stringify(call.response || {}, null, 2)}</pre>
+                    <h3>Response</h3>
+                                         <pre>{JSON.stringify(call.response || {}, null, 2)}</pre>
                   </div>
                 </div>
               )}
