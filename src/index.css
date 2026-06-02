@@ -2511,6 +2511,21 @@ code,
   background-size: 200% 100%;
 }
 
+/* ─── API Detail Page Skeleton Cards ───────────────────────────────────────
+   Skeleton containers for hero, metrics, and sidebar cards during loading.
+   Matches real layout dimensions to prevent cumulative layout shift.
+   ─────────────────────────────────────────────────────────────────────────── */
+.stat-card-skeleton,
+.preview-card-skeleton {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.stat-card-skeleton {
+  background: var(--surface-soft);
+}
+
 /* ─── Tab Content Fade-In Animation ────────────────────────────────────────
    Fade in tab content when switching between tabs for a smooth transition.
    ─────────────────────────────────────────────────────────────────────────── */
