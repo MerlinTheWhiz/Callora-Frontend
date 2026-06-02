@@ -758,14 +758,43 @@ code,
 }
 
 .deposit-modal {
+  display: flex;
+  flex-direction: column;
   width: min(1120px, 100%);
   max-height: min(92vh, 920px);
-  overflow: auto;
+  overflow: hidden;
   padding: 28px;
   border-radius: 30px;
   border: 1px solid var(--line-strong);
   background: var(--modal-bg);
   box-shadow: 0 26px 120px rgba(0, 0, 0, 0.52);
+}
+
+.modal-body {
+  display: grid;
+  gap: 24px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.modal-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.01),
+    var(--modal-bg) 80%
+  );
 }
 
 .modal-header,
@@ -860,8 +889,10 @@ code,
 }
 
 .modal-grid {
+  display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr);
   align-items: start;
+  gap: 24px;
 }
 
 .form-panel,
@@ -952,11 +983,18 @@ code,
   padding: 14px 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
+  min-width: 0;
+}
+
+.preview-row span,
+.preview-row strong {
+  min-width: 0;
 }
 
 .preview-row strong {
   color: var(--text);
   text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .preview-row.emphasis strong {
@@ -974,6 +1012,22 @@ code,
   gap: 14px;
 }
 
+.hash-card strong {
+  overflow-wrap: anywhere;
+}
+
+.hash-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.hash-actions a,
+.hash-actions button {
+  min-height: 44px;
+}
+
 .hash-actions a {
   text-decoration: none;
 }
@@ -986,12 +1040,6 @@ code,
 .success-card {
   border-color: rgba(115, 242, 187, 0.24);
   background: var(--surface-soft);
-}
-
-.modal-actions {
-  margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 980px) {
@@ -1021,6 +1069,10 @@ code,
   .status-banner,
   .preview-header {
     flex-direction: column;
+  }
+
+  .modal-grid {
+    grid-template-columns: 1fr;
   }
 
   .app-footer {
@@ -2257,6 +2309,25 @@ code,
       "input max";
     row-gap: 8px;
   }
+
+  .preset-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .modal-actions {
+    justify-content: stretch;
+  }
+
+  .preset-row button {
+    min-height: 48px;
+  }
+
+  .modal-actions button,
+  .ghost-button,
+  .close-button {
+    min-height: 48px;
+  }
+}
 
   .input-shell input {
     grid-area: input;

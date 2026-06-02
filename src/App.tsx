@@ -694,42 +694,43 @@ function App() {
               </button>
             </div>
 
-            <div className="stage-strip" aria-label="Transaction flow status">
-              {[
-                "input",
-                "approving",
-                "pending",
-                demoOutcome === "confirmed" ? "confirmed" : "failed",
-              ].map((item) => {
-                const isActive =
-                  item === depositStage ||
-                  (item === "input" &&
-                    depositStage === "input" &&
-                    hasValidAmount);
+            <div className="modal-body">
+              <div className="stage-strip" aria-label="Transaction flow status">
+                {[
+                  "input",
+                  "approving",
+                  "pending",
+                  demoOutcome === "confirmed" ? "confirmed" : "failed",
+                ].map((item) => {
+                  const isActive =
+                    item === depositStage ||
+                    (item === "input" &&
+                      depositStage === "input" &&
+                      hasValidAmount);
 
-                return (
-                  <span
-                    key={item}
-                    className={`stage-pill ${isActive ? "active" : ""}`}
-                  >
-                    {item}
-                  </span>
-                );
-              })}
-            </div>
-
-            <div className="status-banner">
-              <div>
-                <strong>{stageLabel}</strong>
-                <p>{statusMessage}</p>
+                  return (
+                    <span
+                      key={item}
+                      className={`stage-pill ${isActive ? "active" : ""}`}
+                    >
+                      {item}
+                    </span>
+                  );
+                })}
               </div>
-              <span className={`status-chip ${depositStage}`}>
-                {depositStage}
-              </span>
-            </div>
 
-            <div className="modal-grid">
-              <div className="form-panel">
+              <div className="status-banner">
+                <div>
+                  <strong>{stageLabel}</strong>
+                  <p>{statusMessage}</p>
+                </div>
+                <span className={`status-chip ${depositStage}`}>
+                  {depositStage}
+                </span>
+              </div>
+
+              <div className="modal-grid">
+                <div className="form-panel">
                 <div className="balance-row">
                   <article className="balance-tile">
                     <span>Vault balance</span>
@@ -906,6 +907,7 @@ function App() {
                 )}
               </div>
             </div>
+          </div>
 
             <div className="modal-actions">
               {depositStage === "failed" ? (
