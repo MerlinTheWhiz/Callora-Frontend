@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Routes, Route, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
+import Dashboard from './components/Dashboard';
 
 type DepositStage = 'input' | 'approving' | 'pending' | 'confirmed' | 'failed';
 type DemoOutcome = 'confirmed' | 'failed';
@@ -489,29 +490,7 @@ function App() {
           <Route
             path={APP_ROUTES.dashboard}
             element={
-              <section className="surface hero-grid">
-                <div className="hero-copy">
-                  <p className="eyebrow">Vault ready</p>
-                  <h1>Fund once, route calls without friction.</h1>
-                  <p className="hero-text">
-                    Keep your USDC vault topped up for uninterrupted usage.
-                    Review every deposit before signing, confirm it on Stellar,
-                    and track the status without leaving the app.
-                  </p>
-
-                  <div className="hero-actions">
-                    <button className="primary-button" onClick={openDeposit}>
-                      Deposit USDC
-                    </button>
-                    <button
-                      className="secondary-button"
-                      onClick={() => navigate(APP_ROUTES.billing)}
-                    >
-                      View vault details
-                    </button>
-                  </div>
-                </div>
-              </section>
+              <Dashboard vaultBalance={vaultBalance} walletBalance={walletBalance} openDeposit={openDeposit} />
             }
           />
           <Route
