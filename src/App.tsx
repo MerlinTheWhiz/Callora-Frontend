@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Routes, Route, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
-import Dashboard from './components/Dashboard';
+import ApiUsage from './ApiUsage';
+import ServerError from './components/ServerError';
+import NotFound from './components/NotFound';
 
 type DepositStage = 'input' | 'approving' | 'pending' | 'confirmed' | 'failed';
 type DemoOutcome = 'confirmed' | 'failed';

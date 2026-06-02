@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Skeleton from "./Skeleton";
 
 export function ApiCardSkeleton() {
@@ -64,27 +63,25 @@ export default function ApiCard({
   api: any;
   onViewDetails?: (api: any) => void;
 }) {
-  const [hover, setHover] = useState(false);
-
   const currency = (n: number) => `$${n.toFixed(3)}`;
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onViewDetails?.(api);
+    }
+  };
 
   return (
     <article
       className="preview-card api-marketplace-card"
+      role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") onViewDetails?.(api);
-      }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      aria-label={`View details for ${api.name}`}
+      onClick={() => onViewDetails?.(api)}
+      onKeyDown={handleKeyDown}
       style={{
         padding: 12,
-        transition: "box-shadow 160ms ease, transform 160ms ease",
-        boxShadow: hover ? "0 6px 20px rgba(0,0,0,0.12)" : "none",
-        transform: hover ? "translateY(-4px)" : "none",
-        border: hover
-          ? "1px solid #4666ff"
-          : "1px solid rgba(255,255,255,0.03)",
         display: "flex",
         flexDirection: "column",
         minHeight: 220,
@@ -167,13 +164,13 @@ export default function ApiCard({
           justifyContent: "space-between",
         }}
       >
-        <button
+        <span
           className="ghost-button"
-          onClick={() => onViewDetails?.(api)}
-          aria-label={`View details for ${api.name}`}
+          aria-hidden="true"
+          style={{ display: "inline-flex", alignItems: "center" }}
         >
           View Details
-        </button>
+        </span>
         <div style={{ color: "var(--muted)", fontSize: 12 }}>
           {api.rating ? `${api.rating} ★` : "No reviews"}
         </div>
