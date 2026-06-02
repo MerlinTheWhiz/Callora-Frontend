@@ -31,6 +31,27 @@
     rgba(20, 27, 50, 0.98),
     rgba(12, 18, 34, 0.98)
   );
+
+  /* HTTP Method Badge Tokens - Dark Theme (High Contrast / Accessible) */
+  --method-get-bg: rgba(59, 130, 246, 0.16);
+  --method-get-color: #60a5fa;
+  --method-get-border: rgba(59, 130, 246, 0.35);
+
+  --method-post-bg: rgba(16, 185, 129, 0.16);
+  --method-post-color: #34d399;
+  --method-post-border: rgba(16, 185, 129, 0.35);
+
+  --method-put-bg: rgba(245, 158, 11, 0.16);
+  --method-put-color: #fbbf24;
+  --method-put-border: rgba(245, 158, 11, 0.35);
+
+  --method-delete-bg: rgba(239, 68, 68, 0.16);
+  --method-delete-color: #f87171;
+  --method-delete-border: rgba(239, 68, 68, 0.35);
+
+  --method-patch-bg: rgba(139, 92, 246, 0.16);
+  --method-patch-color: #a78bfa;
+  --method-patch-border: rgba(139, 92, 246, 0.35);
 }
 
 [data-theme="light"] {
@@ -55,6 +76,27 @@
     rgba(255, 255, 255, 0.98),
     rgba(248, 250, 255, 0.98)
   );
+
+  /* HTTP Method Badge Tokens - Light Theme (High Contrast / Accessible) */
+  --method-get-bg: rgba(37, 99, 235, 0.1);
+  --method-get-color: #1e40af;
+  --method-get-border: rgba(37, 99, 235, 0.25);
+
+  --method-post-bg: rgba(5, 150, 105, 0.1);
+  --method-post-color: #065f46;
+  --method-post-border: rgba(5, 150, 105, 0.25);
+
+  --method-put-bg: rgba(217, 119, 6, 0.1);
+  --method-put-color: #92400e;
+  --method-put-border: rgba(217, 119, 6, 0.25);
+
+  --method-delete-bg: rgba(220, 38, 38, 0.1);
+  --method-delete-color: #991b1b;
+  --method-delete-border: rgba(220, 38, 38, 0.25);
+
+  --method-patch-bg: rgba(109, 40, 217, 0.1);
+  --method-patch-color: #5b21b6;
+  --method-patch-border: rgba(109, 40, 217, 0.25);
 }
 
 * {
@@ -2594,4 +2636,49 @@ code,
   flex-direction: column;
   gap: 12px;
 }
+
+/* Accessible HTTP Method Badges */
+.method-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+}
+
+.method-badge--get {
+  background: var(--method-get-bg);
+  color: var(--method-get-color);
+  border-color: var(--method-get-border);
+}
+
+.method-badge--post {
+  background: var(--method-post-bg);
+  color: var(--method-post-color);
+  border-color: var(--method-post-border);
+}
+
+.method-badge--put {
+  background: var(--method-put-bg);
+  color: var(--method-put-color);
+  border-color: var(--method-put-border);
+}
+
+.method-badge--patch {
+  background: var(--method-patch-bg);
+  color: var(--method-patch-color);
+  border-color: var(--method-patch-border);
+}
+
+.method-badge--delete {
+  background: var(--method-delete-bg);
+  color: var(--method-delete-color);
+  border-color: var(--method-delete-border);
+}
+
 
