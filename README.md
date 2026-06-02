@@ -15,6 +15,16 @@ Web app for the Callora API marketplace: developer dashboard, API management, an
 - Billing section (USDC deposit, settlements)
 - Dev proxy to backend at `http://localhost:3000` for `/api`
 
+## UI Design System
+
+Callora uses a comprehensive design token system and component library. All contributors must follow the [UI Design System guide](docs/UI-Design-System.md) when building or modifying UI.
+
+Key principles:
+- **Use design tokens, not inline hex values** - All colors, spacing, and shadows use CSS custom properties
+- **Reuse shared components** - Use existing components from `src/components/` before creating new ones
+- **Maintain accessibility** - All UI must be keyboard navigable and screen reader friendly
+- **Test both themes** - Verify appearance in both light and dark modes
+
 ## Local setup
 
 1. **Prerequisites:** Node.js 18+
