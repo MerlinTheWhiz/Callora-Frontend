@@ -2510,55 +2510,36 @@ code,
   );
   background-size: 200% 100%;
 }
-
-/* ─── API Detail Page Skeleton Cards ───────────────────────────────────────
-   Skeleton containers for hero, metrics, and sidebar cards during loading.
-   Matches real layout dimensions to prevent cumulative layout shift.
-   ─────────────────────────────────────────────────────────────────────────── */
-.stat-card-skeleton,
-.preview-card-skeleton {
-  background: var(--surface-soft);
-  border: 1px solid var(--line);
-  border-radius: 12px;
+/* Filters Sidebar accessibility styles */
+.filter-group {
+  margin-bottom: 1rem;
 }
-
-.stat-card-skeleton {
-  background: var(--surface-soft);
+.filter-legend {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
 }
-
-/* ─── Tab Content Fade-In Animation ────────────────────────────────────────
-   Fade in tab content when switching between tabs for a smooth transition.
-   ─────────────────────────────────────────────────────────────────────────── */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-
-/* ─── Reduced Motion Support ───────────────────────────────────────────────
-   WCAG 2.1 AA 2.3.3: Animation from Interactions
-   Respects user's prefers-reduced-motion preference by disabling/minimizing
-   transforms and animations for motion-sensitive users. Preserves visual
-   affordances (borders, shadows, color changes) to maintain interactivity cues.
-   ─────────────────────────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  /* Disable all animations globally */
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  /* ApiCard hover state: remove transform, keep shadow and border changes */
-  .api-marketplace-card {
-    transform: none !important;
-  }
-
-  /* Disable transform on hover while keeping other affordances */
-  .api-marketplace-card:hover {
-    transform: none !important;
-  }
+.filter-checkbox,
+.filter-input,
+.filter-select {
+  outline: none;
+}
+.filter-checkbox:focus-visible,
+.filter-input:focus-visible,
+.filter-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+.filter-option:hover .filter-label {
+  color: var(--accent);
+}
+.filter-label {
+  color: var(--text);
+  cursor: pointer;
 }
