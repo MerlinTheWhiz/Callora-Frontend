@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Routes, Route, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 import ApiUsage from './ApiUsage';
+import Dashboard from './components/Dashboard';
 import ServerError from './components/ServerError';
 import NotFound from './components/NotFound';
 
@@ -458,17 +459,20 @@ function App() {
 
   return (
     <div className="app-shell">
-      <div className="ambient ambient-a" />
-      <div className="ambient ambient-b" />
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <div className="ambient ambient-a" aria-hidden="true" />
+      <div className="ambient ambient-b" aria-hidden="true" />
 
-      <header className="topbar">
+      <header className="topbar" role="banner">
         <div>
           <p className="eyebrow">Callora Vault</p>
           <p className="brand">Secure USDC funding for premium API usage</p>
         </div>
 
         <div className="topbar-actions">
-          <nav className="nav">
+          <nav className="nav" aria-label="Primary navigation">
             <NavLink to={APP_ROUTES.dashboard}>Dashboard</NavLink>
             <NavLink to={APP_ROUTES.marketplace}>Marketplace</NavLink>
             <NavLink to={APP_ROUTES.billing}>Billing</NavLink>
@@ -477,7 +481,7 @@ function App() {
         </div>
       </header>
 
-      <main className="page">
+      <main id="main-content" role="main" className="page">
         <Routes>
           <Route
             path={APP_ROUTES.landing}
@@ -649,7 +653,7 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="surface app-footer">
+      <footer className="surface app-footer" role="contentinfo">
         <div>
           <p className="eyebrow">Callora</p>
           <p className="footer-copy">
@@ -657,7 +661,7 @@ function App() {
           </p>
         </div>
 
-        <nav className="footer-nav" aria-label="Footer">
+        <nav className="footer-nav" aria-label="Footer navigation">
           <NavLink to={APP_ROUTES.dashboard}>Dashboard</NavLink>
           <NavLink to={APP_ROUTES.marketplace}>Marketplace</NavLink>
           <NavLink to={APP_ROUTES.billing}>Billing</NavLink>
