@@ -57,26 +57,52 @@ export default function FiltersSidebar({
             <legend className="filter-legend">Price range</legend>
             <div className="filter-price" style={{ marginTop: 8, display: "flex", gap: 8 }}>
               <input
+                id="min-price-input"
                 type="number"
-                className="filter-input"
+                min="0"
+                className={`filter-input ${minPrice !== null && maxPrice !== null && minPrice > maxPrice ? 'filter-input--invalid' : ''}`}
                 placeholder="min"
                 value={minPrice ?? ""}
-                onChange={(e) =>
-                  setMinPrice(e.target.value === "" ? null : Number(e.target.value))
-                }
+                onChange={(e) => {
+                  const val = e.target.value === "" ? null : Math.max(0, Number(e.target.value));
+                  setMinPrice(val);
+                }}
+                aria-invalid={minPrice !== null && maxPrice !== null && minPrice > maxPrice}
+                aria-describedby={minPrice !== null && maxPrice !== null && minPrice > maxPrice ? "price-range-error" : undefined}
                 style={{ width: "100%" }}
               />
               <input
+                id="max-price-input"
                 type="number"
-                className="filter-input"
+                min="0"
+                className={`filter-input ${minPrice !== null && maxPrice !== null && minPrice > maxPrice ? 'filter-input--invalid' : ''}`}
                 placeholder="max"
                 value={maxPrice ?? ""}
-                onChange={(e) =>
-                  setMaxPrice(e.target.value === "" ? null : Number(e.target.value))
-                }
+                onChange={(e) => {
+                  const val = e.target.value === "" ? null : Math.max(0, Number(e.target.value));
+                  setMaxPrice(val);
+                }}
+                aria-invalid={minPrice !== null && maxPrice !== null && minPrice > maxPrice}
+                aria-describedby={minPrice !== null && maxPrice !== null && minPrice > maxPrice ? "price-range-error" : undefined}
                 style={{ width: "100%" }}
               />
             </div>
+            {minPrice !== null && maxPrice !== null && minPrice > maxPrice && (
+              <div 
+                id="price-range-error" 
+                style={{ 
+                  color: "var(--danger)", 
+                  fontSize: "0.8rem", 
+                  marginTop: 6, 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: 4 
+                }}
+                role="alert"
+              >
+                <span>⚠️</span> Min price cannot exceed max price.
+              </div>
+            )}
           </fieldset>
       </div>
 
