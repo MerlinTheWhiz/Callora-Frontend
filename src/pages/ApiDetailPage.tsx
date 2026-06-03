@@ -549,15 +549,7 @@ print(data)`;
                           <div className="endpoint-card-header">
                             <div className="endpoint-title-row">
                               <span
-                                style={{
-                                  padding: "4px 8px",
-                                  background:
-                                    ep.method === "GET" ? "#3b82f6" : "#10b981",
-                                  color: "white",
-                                  borderRadius: 4,
-                                  fontSize: 11,
-                                  fontWeight: 800,
-                                }}
+                                className={`method-badge method-badge--${(ep.method || 'get').toLowerCase()}`}
                               >
                                 {ep.method}
                               </span>
