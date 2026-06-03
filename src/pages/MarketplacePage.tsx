@@ -63,10 +63,13 @@ export default function MarketplacePage(): JSX.Element {
       items = items.filter((a) => selectedCategories.has(a.category ?? ""));
     }
 
-    if (minPrice !== null)
-      items = items.filter((a) => a.pricePerRequest >= minPrice);
-    if (maxPrice !== null)
-      items = items.filter((a) => a.pricePerRequest <= maxPrice);
+    const hasInvertedPrice = minPrice !== null && maxPrice !== null && minPrice > maxPrice;
+    if (!hasInvertedPrice) {
+      if (minPrice !== null)
+        items = items.filter((a) => a.pricePerRequest >= minPrice);
+      if (maxPrice !== null)
+        items = items.filter((a) => a.pricePerRequest <= maxPrice);
+    }
 
     // popularity-based ordering
     if (popularity === "mostUsed") {
