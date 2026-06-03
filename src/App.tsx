@@ -5,6 +5,7 @@ import ApiUsage from './ApiUsage';
 import Dashboard from './components/Dashboard';
 import ServerError from './components/ServerError';
 import NotFound from './components/NotFound';
+import Dashboard from './components/Dashboard';
 
 type DepositStage = 'input' | 'approving' | 'pending' | 'confirmed' | 'failed';
 type DemoOutcome = 'confirmed' | 'failed';

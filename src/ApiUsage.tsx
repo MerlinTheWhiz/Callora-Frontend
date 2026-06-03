@@ -145,6 +145,7 @@ export default function ApiUsage() {
   const [apiResponse, setApiResponse] = useState<any>(null);
   const [responseTime, setResponseTime] = useState<number | null>(null);
   const [callCost, setCallCost] = useState<number | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'success' | 'error'>('all');
   const [callHistory, setCallHistory] = useState<CallRecord[]>(MOCK_CALL_HISTORY);
   const [statusFilter, setStatusFilter] = useState<'all' | 'success' | 'error'>('all');
   const filteredCallHistory = statusFilter === 'all' ? callHistory : callHistory.filter(call => call.status === statusFilter);
@@ -368,19 +369,36 @@ export default function ApiUsage() {
           </div>
           
           <button
-            className="primary-button"
+            className={`primary-button ${isLoading ? 'button-loading' : ''}`}
             onClick={handleMakeTestCall}
             disabled={isLoading}
           >
+            {isLoading && <span className="button-spinner" aria-hidden="true" />}
             {isLoading ? 'Making Call...' : 'Make Test Call'}
           </button>
         </div>
         
         {(apiResponse || isLoading) && (
-          <div className="response-display">
+          <div 
+            className="response-display"
+            aria-live="polite"
+            aria-busy={isLoading}
+          >
             <h3>Response</h3>
             {isLoading ? (
-              <div className="loading-placeholder">Loading...</div>
+              <div className="response-content">
+                <div className="response-meta">
+                  <Skeleton width="120px" height="18px" borderRadius="4px" />
+                  <Skeleton width="100px" height="18px" borderRadius="4px" />
+                </div>
+                <div className="response-json-skeleton">
+                  <Skeleton width="60%" height="16px" borderRadius="4px" />
+                  <Skeleton width="80%" height="16px" borderRadius="4px" />
+                  <Skeleton width="45%" height="16px" borderRadius="4px" />
+                  <Skeleton width="70%" height="16px" borderRadius="4px" />
+                  <Skeleton width="30%" height="16px" borderRadius="4px" />
+                </div>
+              </div>
             ) : (
               <div className="response-content">
                 <div className="response-meta">
