@@ -40,6 +40,7 @@ export default function ApiDetailPage({ onBack }: Props) {
       : undefined;
 
   const api = useMemo(() => findApiById(id), [id]);
+  useDocumentTitle(api?.name ?? 'API Detail – Callora', api?.description);
 
   // Simulate initial data loading with 1.5s delay (consistent with MarketplacePage)
   useEffect(() => {
