@@ -1,8 +1,10 @@
 import { useMemo, useState } from "react";
 import CodeExample from "../components/CodeExample";
 import Breadcrumb from "../components/Breadcrumb";
+import { MethodChip } from "../components/MethodChip";
 import { findApiById } from "../data/mockApis";
 import EmptyState from "../components/EmptyState";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 /**
  * ApiDetailPage Component
@@ -30,6 +32,7 @@ export default function ApiDetailPage({ onBack }: Props) {
       : undefined;
 
   const api = useMemo(() => findApiById(id), [id]);
+  useDocumentTitle(api?.name ?? 'API Detail – Callora', api?.description);
 
   if (!api) {
     return (
@@ -262,14 +265,7 @@ print(data)`;
                         <div key={ep.id} className="preview-card" style={{ padding: 0, overflow: "hidden" }}>
                           <div className="endpoint-card-header">
                             <div className="endpoint-title-row">
-                              <span style={{ 
-                                padding: "4px 8px", 
-                                background: ep.method === "GET" ? "#3b82f6" : "#10b981",
-                                color: "white",
-                                borderRadius: 4,
-                                fontSize: 11,
-                                fontWeight: 800
-                              }}>{ep.method}</span>
+                              <MethodChip method={ep.method} />
                               <strong style={{ fontSize: 15 }}>{ep.title}</strong>
                             </div>
                             <code className="endpoint-url">{ep.url}</code>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import ApiCard, { ApiCardSkeleton } from "../components/ApiCard";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 import SearchBar from "../components/SearchBar";
 import FiltersSidebar from "../components/FiltersSidebar";
 import EmptyState from "../components/EmptyState";
@@ -7,6 +8,7 @@ import MOCK_APIS, { type APIItem } from "../data/mockApis";
 import { useDebounce } from "../hooks/useDebounce";
 
 export default function MarketplacePage(): JSX.Element {
+  useDocumentTitle('Marketplace – Callora', 'Explore APIs on the Callora marketplace, discover and integrate APIs for your applications.');
   const [search, setSearch] = useState("");
   // Debounce search input to prevent excessive re-renders on large lists
   const debouncedSearch = useDebounce(search, 300);

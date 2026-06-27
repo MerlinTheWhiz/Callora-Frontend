@@ -1,4 +1,56 @@
 :root {
+  /* Method chip colors */
+  --method-get-bg: #3b82f6;
+  --method-get-fg: #ffffff;
+  --method-post-bg: #10b981;
+  --method-post-fg: #ffffff;
+  --method-put-bg: #f97316;
+  --method-put-fg: #ffffff;
+  --method-patch-bg: #f59e0b;
+  --method-patch-fg: #ffffff;
+  --method-delete-bg: #ef4444;
+  --method-delete-fg: #ffffff;
+  --method-options-bg: #6366f1;
+  --method-options-fg: #ffffff;
+}
+
+.method-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  min-width: 60px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-main);
+  position: relative;
+  cursor: default;
+  transition: background var(--transition-speed) ease;
+}
+.method-chip .method-icon {
+  margin-right: 4px;
+}
+.method-chip .method-tooltip {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-strong);
+  color: var(--text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 10;
+}
+.method-get { background: var(--method-get-bg); color: var(--method-get-fg); }
+.method-post { background: var(--method-post-bg); color: var(--method-post-fg); }
+.method-put { background: var(--method-put-bg); color: var(--method-put-fg); }
+.method-patch { background: var(--method-patch-bg); color: var(--method-patch-fg); }
+.method-delete { background: var(--method-delete-bg); color: var(--method-delete-fg); }
+.method-options { background: var(--method-options-bg); color: var(--method-options-fg); }
   --font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
   --radius-xl: 28px;
   --radius-lg: 20px;
