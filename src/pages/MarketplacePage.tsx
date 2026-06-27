@@ -6,6 +6,7 @@ import FiltersSidebar from "../components/FiltersSidebar";
 import EmptyState from "../components/EmptyState";
 import MOCK_APIS, { type APIItem } from "../data/mockApis";
 import { useDebounce } from "../hooks/useDebounce";
+import { LOADING_DELAY_MS } from "../config/constants";
 
 export default function MarketplacePage(): JSX.Element {
   useDocumentTitle('Marketplace – Callora', 'Explore APIs on the Callora marketplace, discover and integrate APIs for your applications.');
@@ -27,7 +28,7 @@ export default function MarketplacePage(): JSX.Element {
     // Simulate initial data loading
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, LOADING_DELAY_MS);
     return () => clearTimeout(timer);
   }, []);
 
@@ -65,10 +66,13 @@ export default function MarketplacePage(): JSX.Element {
       items = items.filter((a) => selectedCategories.has(a.category ?? ""));
     }
 
-    if (minPrice !== null)
-      items = items.filter((a) => a.pricePerRequest >= minPrice);
-    if (maxPrice !== null)
-      items = items.filter((a) => a.pricePerRequest <= maxPrice);
+    const hasInvertedPrice = minPrice !== null && maxPrice !== null && minPrice > maxPrice;
+    if (!hasInvertedPrice) {
+      if (minPrice !== null)
+        items = items.filter((a) => a.pricePerRequest >= minPrice);
+      if (maxPrice !== null)
+        items = items.filter((a) => a.pricePerRequest <= maxPrice);
+    }
 
     // popularity-based ordering
     if (popularity === "mostUsed") {

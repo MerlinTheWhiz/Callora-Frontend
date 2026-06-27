@@ -1,7 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { Routes, Route, NavLink, useNavigate, useLocation } from 'react-router-dom';
-import useDocumentTitle from "./hooks/useDocumentTitle";
+import { ThemeToggle } from './ThemeToggle';
+import ApiUsage from './ApiUsage';
 import Dashboard from './components/Dashboard';
+import ServerError from './components/ServerError';
+import NotFound from './components/NotFound';
+import { formatUsdc, formatUsdShortcut } from './utils/format';
+import {
+  EXPLORER_BASE_URL,
+  MIN_DEPOSIT,
+  NETWORK_FEE,
+  PRESET_AMOUNTS,
+} from './config/constants';
 
 type DepositStage = 'input' | 'approving' | 'pending' | 'confirmed' | 'failed';
 type DemoOutcome = 'confirmed' | 'failed';
@@ -87,10 +97,7 @@ const developerSteps: Step[] = [
   },
 ];
 
-const PRESET_AMOUNTS = [10, 50, 100, 500] as const;
-const MIN_DEPOSIT = 10;
-const NETWORK_FEE = "0.00001 XLM";
-const EXPLORER_BASE_URL = "https://stellar.expert/explorer/testnet/tx/";
+
 
 const APP_ROUTES = {
   landing: "/",
@@ -103,18 +110,7 @@ const APP_ROUTES = {
   serverError: "/500",
 } as const;
 
-function formatUsdc(value: number) {
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(value);
-}
 
-function formatUsdShortcut(value: number) {
-  return `$${new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: value >= 100 ? 0 : 2,
-  }).format(value)}`;
-}
 
 function createMockHash() {
   const seed = `${Date.now().toString(16)}${Math.random()
@@ -474,17 +470,20 @@ function App() {
 
   return (
     <div className="app-shell">
-      <div className="ambient ambient-a" />
-      <div className="ambient ambient-b" />
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <div className="ambient ambient-a" aria-hidden="true" />
+      <div className="ambient ambient-b" aria-hidden="true" />
 
-      <header className="topbar">
+      <header className="topbar" role="banner">
         <div>
           <p className="eyebrow">Callora Vault</p>
-          <h1 className="brand">Secure USDC funding for premium API usage</h1>
+          <p className="brand">Secure USDC funding for premium API usage</p>
         </div>
 
         <div className="topbar-actions">
-          <nav className="nav">
+          <nav className="nav" aria-label="Primary navigation">
             <NavLink to={APP_ROUTES.dashboard}>Dashboard</NavLink>
             <NavLink to={APP_ROUTES.marketplace}>Marketplace</NavLink>
             <NavLink to={APP_ROUTES.billing}>Billing</NavLink>
@@ -493,7 +492,7 @@ function App() {
         </div>
       </header>
 
-      <main className="page">
+      <main id="main-content" role="main" className="page">
         <Routes>
           <Route
             path={APP_ROUTES.landing}
@@ -516,7 +515,7 @@ function App() {
             element={
               <section className="surface placeholder-card">
                 <p className="eyebrow">Marketplace</p>
-                <h2>Discover premium APIs ready for production usage.</h2>
+                <h1>Discover premium APIs ready for production usage.</h1>
                 <p>
                   Compare APIs, review pricing, and route high-priority
                   workloads with confidence. Use the billing tab whenever you
@@ -534,7 +533,7 @@ function App() {
                   <div className="section-heading">
                     <div>
                       <p className="eyebrow">Deposit USDC to Vault</p>
-                      <h2>Review every number before you approve.</h2>
+                      <h1>Review every number before you approve.</h1>
                     </div>
                     <button className="primary-button" onClick={openDeposit}>
                       Open deposit modal
@@ -563,21 +562,21 @@ function App() {
 
                   <div className="info-row">
                     <div className="info-card">
-                      <h3>Preset funding options</h3>
+                      <h2>Preset funding options</h2>
                       <p>
                         $10, $50, $100, $500, or any custom amount above the
                         minimum.
                       </p>
                     </div>
                     <div className="info-card">
-                      <h3>Status tracking</h3>
+                      <h2>Status tracking</h2>
                       <p>
                         Approving, pending, confirmed, and failed states are all
                         shown in-context.
                       </p>
                     </div>
                     <div className="info-card">
-                      <h3>Explorer visibility</h3>
+                      <h2>Explorer visibility</h2>
                       <p>
                         Once submitted, the transaction hash is linkable and
                         copyable from the UI.
@@ -588,7 +587,7 @@ function App() {
 
                 <aside className="surface prototype-panel">
                   <p className="eyebrow">Prototype state preview</p>
-                  <h3>Review both success and failure flows.</h3>
+                  <h2>Review both success and failure flows.</h2>
                   <div className="outcome-toggle">
                     <button
                       className={demoOutcome === "confirmed" ? "active" : ""}
@@ -618,7 +617,7 @@ function App() {
             element={
               <section className="surface placeholder-card">
                 <p className="eyebrow">Documentation</p>
-                <h2>Everything you need to ship with the Callora vault.</h2>
+                <h1>Everything you need to ship with the Callora vault.</h1>
                 <p>
                   Implementation guides, transaction lifecycle notes, and
                   troubleshooting references live here so teams can move from
@@ -633,7 +632,7 @@ function App() {
             element={
               <section className="surface placeholder-card">
                 <p className="eyebrow">Status</p>
-                <h2>System status updates in one place.</h2>
+                <h1>System status updates in one place.</h1>
                 <p>
                   All core services are operational. If you are still seeing
                   issues, please contact support and include what action you were
@@ -665,7 +664,7 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="surface app-footer">
+      <footer className="surface app-footer" role="contentinfo">
         <div>
           <p className="eyebrow">Callora</p>
           <p className="footer-copy">
@@ -673,7 +672,7 @@ function App() {
           </p>
         </div>
 
-        <nav className="footer-nav" aria-label="Footer">
+        <nav className="footer-nav" aria-label="Footer navigation">
           <NavLink to={APP_ROUTES.dashboard}>Dashboard</NavLink>
           <NavLink to={APP_ROUTES.marketplace}>Marketplace</NavLink>
           <NavLink to={APP_ROUTES.billing}>Billing</NavLink>
@@ -710,42 +709,43 @@ function App() {
               </button>
             </div>
 
-            <div className="stage-strip" aria-label="Transaction flow status">
-              {[
-                "input",
-                "approving",
-                "pending",
-                demoOutcome === "confirmed" ? "confirmed" : "failed",
-              ].map((item) => {
-                const isActive =
-                  item === depositStage ||
-                  (item === "input" &&
-                    depositStage === "input" &&
-                    hasValidAmount);
+            <div className="modal-body">
+              <div className="stage-strip" aria-label="Transaction flow status">
+                {[
+                  "input",
+                  "approving",
+                  "pending",
+                  demoOutcome === "confirmed" ? "confirmed" : "failed",
+                ].map((item) => {
+                  const isActive =
+                    item === depositStage ||
+                    (item === "input" &&
+                      depositStage === "input" &&
+                      hasValidAmount);
 
-                return (
-                  <span
-                    key={item}
-                    className={`stage-pill ${isActive ? "active" : ""}`}
-                  >
-                    {item}
-                  </span>
-                );
-              })}
-            </div>
-
-            <div className="status-banner">
-              <div>
-                <strong>{stageLabel}</strong>
-                <p>{statusMessage}</p>
+                  return (
+                    <span
+                      key={item}
+                      className={`stage-pill ${isActive ? "active" : ""}`}
+                    >
+                      {item}
+                    </span>
+                  );
+                })}
               </div>
-              <span className={`status-chip ${depositStage}`}>
-                {depositStage}
-              </span>
-            </div>
 
-            <div className="modal-grid">
-              <div className="form-panel">
+              <div className="status-banner">
+                <div>
+                  <strong>{stageLabel}</strong>
+                  <p>{statusMessage}</p>
+                </div>
+                <span className={`status-chip ${depositStage}`}>
+                  {depositStage}
+                </span>
+              </div>
+
+              <div className="modal-grid">
+                <div className="form-panel">
                 <div className="balance-row">
                   <article className="balance-tile">
                     <span>Vault balance</span>
@@ -922,6 +922,7 @@ function App() {
                 )}
               </div>
             </div>
+          </div>
 
             <div className="modal-actions">
               {depositStage === "failed" ? (

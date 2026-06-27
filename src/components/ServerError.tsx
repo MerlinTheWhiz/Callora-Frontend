@@ -9,13 +9,15 @@ interface ServerErrorProps {
   title?: string;
   /** Optional override for the body copy. Defaults to the standard copy. */
   description?: string;
+  /** Optional callback to go home. */
+  onGoHome?: () => void;
 }
 
 export default function ServerError({
   onRetry,
   requestId,
   title = 'Something went wrong on our end',
-  description = 'This is not your fault. Our team has been notified and we're working on a fix. Please try again in a moment.',
+  description = "This is not your fault. Our team has been notified and we're working on a fix. Please try again in a moment.",
 }: ServerErrorProps) {
   const [isRetrying, setIsRetrying] = useState(false);
   const [copied, setCopied] = useState(false);
