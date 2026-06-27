@@ -6,14 +6,14 @@ import { useEffect, useRef } from 'react';
  * @param title - The page title to set.
  * @param description - Optional meta description content.
  */
-export default function useDocumentTitle(title: string, description?: string) {
+export default function useDocumentTitle(title?: string, description?: string) {
   const prevTitle = useRef(document.title);
   const descriptionMeta = useRef<HTMLMetaElement | null>(null);
   const prevDescription = useRef<string | null>(null);
 
   useEffect(() => {
     // Set new title
-    document.title = title;
+    document.title = title ?? 'Callora';
 
     if (description !== undefined) {
       // Find existing meta description tag
